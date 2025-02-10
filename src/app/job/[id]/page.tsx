@@ -8,10 +8,7 @@ import {
   Building2, 
   MapPin, 
   DollarSign, 
-  Clock, 
   Users,
-  Briefcase,
-  GraduationCap,
   Calendar,
   Loader2
 } from 'lucide-react';
@@ -19,10 +16,8 @@ import axios from 'axios';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import placeholderImage from '@/public/placeholder.jpg'
+
 
 interface Job {
   _id: string;

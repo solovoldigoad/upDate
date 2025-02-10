@@ -1,13 +1,10 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { Search, ChevronDown, Star, BookOpen, Clock, Award, Users, ArrowRight, Instagram, Linkedin, Twitter, Building2, Facebook, MapPin, Phone, Mail, Send } from 'lucide-react';
+import { Search, Star, BookOpen, Clock, Award, Users, ArrowRight, Instagram, Linkedin, Twitter, Building2, Facebook, MapPin, Phone, Mail, Send } from 'lucide-react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
-import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
 import Image from 'next/image';
 import { h3, span } from 'framer-motion/client';
 import { Input } from '@/components/ui/input';
@@ -57,38 +54,7 @@ const UpDate = () => {
     }
   ];
 
-  const projects = [
-    {
-      description: "Payment gateway for online businesses",
-      title: "Stripe",
-      link: "https://stripe.com",
-    },
-    {
-      description: "Payment gateway for online businesses",
-      title: "Netflix",
-      link: "https://netflix.com",
-    },
-    {
-      description: "Payment gateway for online businesses",
-      title: "Google",
-      link: "https://google.com",
-    },
-    {
-      description: "Payment gateway for online businesses",
-      title: "Meta",
-      link: "https://meta.com",
-    },
-    {
-      description: "Payment gateway for online businesses",
-      title: "Amazon",
-      link: "https://amazon.com",
-    },
-    {
-      description: "Payment gateway for online businesses",
-      title: "Microsoft",
-      link: "https://microsoft.com",
-    },
-  ];
+
 
   useEffect(() => {
     const fetchJobs = async () => {

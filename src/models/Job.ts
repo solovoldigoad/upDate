@@ -1,5 +1,5 @@
-import User from './User';
-import mongoose, { Schema, model, models } from 'mongoose';
+
+import{ Schema, model, models } from 'mongoose';
 
 const JobSchema = new Schema({
     title: {

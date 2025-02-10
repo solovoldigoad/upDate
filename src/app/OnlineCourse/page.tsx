@@ -7,11 +7,8 @@ import {
   Clock, 
   Award, 
   CheckCircle2, 
-  Play, 
   Users,
   Star,
-  Download,
-  Calendar
 } from 'lucide-react';
 
 const HRCoursePage = () => {

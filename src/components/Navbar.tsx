@@ -2,14 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, User, Bell, Search, Briefcase, Building2, BookMarked, MessageSquare, MapPin, DollarSign, PhoneCall } from 'lucide-react';
+import { Menu, X, Bell, Search, Briefcase, MessageSquare,  DollarSign,  } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useSession, signOut} from 'next-auth/react'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from '@/components/ui/dropdown-menu';
-import { HoveredLink, MenuPrice, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
-import { cn } from "@/lib/utils";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { PricingDetails } from './priceCard';
 

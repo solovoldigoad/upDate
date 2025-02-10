@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Mail, Lock, User, Building, EyeIcon, EyeOff,Facebook } from 'lucide-react';
+import { Mail, Lock, User, EyeIcon, EyeOff,Facebook } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { signIn  } from 'next-auth/react';
 import axios from 'axios';

@@ -35,7 +35,7 @@ export const options: NextAuthOptions = {
           }
           const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
           return isPasswordCorrect ? user : null;
-        } catch (error: Error | unknown) {
+        } catch {
           return null;
         }
       }

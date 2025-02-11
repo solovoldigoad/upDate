@@ -55,15 +55,13 @@ export async function GET() {
             .populate('postedBy', 'email')
             .sort({ postedDate: -1 });
 
-        // Add session user email to response
         const jobsWithSessionEmail = {
             jobs,
             sessionUserEmail: session.user.email
         };
 
         return NextResponse.json(jobsWithSessionEmail);
-    } catch (error) {
-        console.error('Error fetching jobs:', error);
+    } catch {
         return NextResponse.json(
             { error: 'Failed to fetch jobs' },
             { status: 500 }

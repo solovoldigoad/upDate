@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -45,9 +46,11 @@ const HRCoursePage = () => {
             </Button>
           </div>
           <div className="hidden md:block">
-            <img 
+            <Image 
               src="/api/placeholder/500/300"
               alt="HR Course"
+              width={500}
+              height={300}
               className="rounded-lg shadow-lg"
             />
           </div>

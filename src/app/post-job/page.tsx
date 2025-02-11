@@ -37,9 +37,13 @@ export default function JobPostingForm() {
         alert('Job posted successfully!');
         router.push('/');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error creating job:', error);
-      alert(error.response?.data?.error || 'Failed to post job. Please try again.');
+      if (axios.isAxiosError(error)) {
+        alert(error.response?.data?.error || 'Failed to post job. Please try again.');
+      } else {
+        alert('Failed to post job. Please try again.');
+      }
     }
   };
 

@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
 
         await newJob.save();
         return NextResponse.json({ message: 'Job posted successfully', job: newJob }, { status: 201 });
-    } catch (error) {
+    } catch (error: Error | unknown) {
         return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }
 }

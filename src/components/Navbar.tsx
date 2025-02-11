@@ -24,14 +24,12 @@ const Navbar = () => {
   const {status , data: session} = useSession()
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
-  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [notifications] = useState<Notification[]>([
     { id: 1, text: "New job match: Senior Developer", isNew: true },
     { id: 2, text: "Interview scheduled tomorrow", isNew: true },
   ]);
 
-  const locations = ["New York", "San Francisco", "London", "Remote"];
 
   useEffect(() => {
     const handleScroll = () => {

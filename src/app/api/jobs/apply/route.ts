@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import User from '@/models/User';
 import connectDB from "@/lib/db";
 import cloudinary from "@/utils/cloudinary";
 
@@ -35,13 +34,6 @@ export async function POST(
         resource_type: "raw",
         folder: "resumes",
       });
-
-      // Update user with resume URL
-      const updatedUser = await User.findOneAndUpdate(
-        { email: session.user.email },
-        { resumeUrl: uploadResponse.secure_url },
-        { new: true }
-      );
 
 
       return NextResponse.json(

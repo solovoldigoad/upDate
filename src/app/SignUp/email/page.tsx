@@ -22,7 +22,7 @@ const AuthPages = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: { target: { name: string; value: string; }; }) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -52,8 +52,15 @@ const AuthPages = () => {
 
       const response = await axios.post(endpoint, requestData);
       router.push(response.data.redirectTo);
-    } catch (err: any) {
-      setError(err.response?.data?.error || err.message || "Authentication failed");
+    } catch (error: Error | unknown) {
+      if (error instanceof Error) {
+        setError(error.message || "Authentication failed");
+      } else if (error && typeof error === 'object' && 'response' in error) {
+        const axiosError = error as { response?: { data?: { error?: string } } };
+        setError(axiosError.response?.data?.error || "Authentication failed");
+      } else {
+        setError("Authentication failed");
+      }
     } finally {
       setLoading(false);
     }

@@ -2,13 +2,13 @@
 
 import * as React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { Check, ChevronRight, Circle } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 
 const DropdownMenu = DropdownMenuPrimitive.Root
+DropdownMenu.displayName = "DropdownMenu"
 
 const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+DropdownMenuTrigger.displayName = "DropdownMenuTrigger"
 
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
@@ -26,6 +26,7 @@ const DropdownMenuContent = React.forwardRef<
     />
   </DropdownMenuPrimitive.Portal>
 ))
+DropdownMenuContent.displayName = "DropdownMenuContent"
 
 const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
@@ -40,6 +41,7 @@ const DropdownMenuItem = React.forwardRef<
     {...props}
   />
 ))
+DropdownMenuItem.displayName = "DropdownMenuItem"
 
 const DropdownMenuLabel = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Label>,
@@ -51,6 +53,7 @@ const DropdownMenuLabel = React.forwardRef<
     {...props}
   />
 ))
+DropdownMenuLabel.displayName = "DropdownMenuLabel"
 
 const DropdownMenuSeparator = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
@@ -62,6 +65,7 @@ const DropdownMenuSeparator = React.forwardRef<
     {...props}
   />
 ))
+DropdownMenuSeparator.displayName = "DropdownMenuSeparator"
 
 export {
   DropdownMenu,

@@ -1,19 +1,19 @@
 import mongoose from "mongoose";
 
-const connection: any = {}; // Store connection status globally
+interface Connection {
+  isConnected?: number;
+}
+
+const connection: Connection = {}; // Store connection status globally
 
 export default async function connectDB() {
   if (connection.isConnected) {
     console.log("Using existing database connection");
     return;
-
   }
 
   try {
-    const db = await mongoose.connect(process.env.MONGO_URI as string, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    } as any);
+    const db = await mongoose.connect(process.env.MONGO_URI as string);
 
     connection.isConnected = db.connections[0].readyState; // 1 means connected
     console.log("MongoDB connected successfully");

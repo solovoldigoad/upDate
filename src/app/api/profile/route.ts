@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import connectDB from "@/lib/db";
 import UserModel from "@/models/User";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const session = await getServerSession(options);
     
@@ -29,7 +29,7 @@ export async function GET(req: NextRequest) {
       company: user.company,
     });
 
-  } catch (error) {
+  } catch (error: Error | unknown) {
     console.error("Error fetching user profile:", error);
     return NextResponse.json(
       { error: "Internal server error" }, 

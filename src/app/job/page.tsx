@@ -29,7 +29,6 @@ const JobListings = () => {
     location: '',
     salary: ''
   });
-  const [showFilters, setShowFilters] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
 
@@ -43,7 +42,7 @@ const JobListings = () => {
         const approvedJobs = jobsData.filter((job: Job) => job.status === 'approved');
         setJobs(approvedJobs);
         setLoading(false);
-      } catch (error) {
+      } catch (error: Error | unknown) {
         console.error('Error fetching jobs:', error);
         setLoading(false);
       }

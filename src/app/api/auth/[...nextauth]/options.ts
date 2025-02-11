@@ -1,4 +1,4 @@
-import { NextAuthOptions, Session } from 'next-auth';
+import { NextAuthOptions} from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
@@ -22,21 +22,21 @@ export const options: NextAuthOptions = {
         email: { label: "Email", type: "text", placeholder: "your-email@example.com" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials: any): Promise<any>{
+      async authorize(credentials: Record<"email" | "password", string> | undefined) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+        
         await connectDB();
         try {
-          const user = await UserModel.findOne({email: credentials.email})
-          if(!user){
-            throw new Error("email don't exist register first")
+          const user = await UserModel.findOne({email: credentials.email});
+          if(!user) {
+            throw new Error("email don't exist register first");
           }
-          const isPasswordCorrect = await bcrypt.compare(credentials.password , user.password)
-          if(isPasswordCorrect){
-            return user
-          }else{
-            throw new Error("incorrect password")
-          }
-        } catch (error) {
-          throw new Error("Internal Auth Cerdentials Error")
+          const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
+          return isPasswordCorrect ? user : null;
+        } catch (error: Error | unknown) {
+          return null;
         }
       }
     })
@@ -49,7 +49,7 @@ export const options: NextAuthOptions = {
       if(account?.provider === 'google' || account?.provider === 'facebook'){
         try {
           // Get the image URL from the Google profile
-          const imageUrl = (profile as any).picture || profile?.image || user?.image;
+          const imageUrl = (profile as { picture?: string })?.picture || profile?.image || user?.image;
           
           // First check if user exists by email
           let existingUser = await UserModel.findOne({ email: profile?.email });
@@ -83,7 +83,7 @@ export const options: NextAuthOptions = {
           } else {
             return `/SignUp/phoneNumber?email=${profile?.email}&name=${profile?.name}&image=${imageUrl}`;
           }
-        } catch (error) {
+        } catch (error: Error | unknown) {
           console.error('Error in social sign in:', error);
           return false;
         }

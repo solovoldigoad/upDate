@@ -51,8 +51,12 @@ async function handleSubmit() {
         }
         console.log(`phone number sended successfully:${phoneNumber}` )
 
-      } catch (error) {
-        console.log("unable to send mobile number data")
+      } catch (error: Error | unknown) {
+        if (error instanceof Error) {
+          console.log("Unable to send mobile number data:", error.message);
+        } else {
+          console.log("Unable to send mobile number data");
+        }
       }
       // Here you would typically send the data to your backend
     } else {

@@ -1,10 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
-export const HoveredLink = ({ children, ...props }: any) => {
-  const [isHovered, setIsHovered] = useState(false)
+interface HoveredLinkProps extends React.ComponentProps<typeof Link> {
+  children: React.ReactNode;
+}
+
+export const HoveredLink = ({ children, ...props }: HoveredLinkProps) => {
+  const [, setIsHovered] = useState(false)
 
   return (
     <Link

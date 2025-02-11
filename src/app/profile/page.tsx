@@ -223,26 +223,70 @@ export default function Profile() {
 
         {/* Work Experience */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold">Work Experience</h2>
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold">Work Experience</h2>
+            {isEditing && <Button onClick={addJob}>Add Job</Button>}
+          </div>
           {jobs.map((job) => (
-            <div key={job.id} className="space-y-4 p-4 border rounded-md">
+            <div key={job.id} className="space-y-4 p-4 border rounded-md relative">
+              {isEditing && (
+                <Button 
+                  variant="destructive" 
+                  size="sm" 
+                  className="absolute top-2 right-2"
+                  onClick={() => removeJob(job.id)}
+                >
+                  Remove
+                </Button>
+              )}
               <div className="grid gap-4 md:grid-cols-2">
-                <div className="grid gap-2">
-                  <Label htmlFor={`title-${job.id}`}>Job Title</Label>
-                  <p>{job.title}</p>
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor={`company-${job.id}`}>Company</Label>
-                  <p>{job.company}</p>
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor={`startDate-${job.id}`}>Start Date</Label>
-                  <p>{job.startDate}</p>
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor={`endDate-${job.id}`}>End Date</Label>
-                  <p>{job.endDate}</p>
-                </div>
+                {isEditing ? (
+                  <>
+                    <input
+                      value={job.title}
+                      onChange={(e) => updateJob(job.id, 'title', e.target.value)}
+                      className="border p-2 rounded"
+                      placeholder="Job Title"
+                    />
+                    <input
+                      value={job.company}
+                      onChange={(e) => updateJob(job.id, 'company', e.target.value)}
+                      className="border p-2 rounded"
+                      placeholder="Company"
+                    />
+                    <input
+                      value={job.startDate}
+                      onChange={(e) => updateJob(job.id, 'startDate', e.target.value)}
+                      className="border p-2 rounded"
+                      placeholder="Start Date"
+                    />
+                    <input
+                      value={job.endDate}
+                      onChange={(e) => updateJob(job.id, 'endDate', e.target.value)}
+                      className="border p-2 rounded"
+                      placeholder="End Date"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div className="grid gap-2">
+                      <Label htmlFor={`title-${job.id}`}>Job Title</Label>
+                      <p>{job.title}</p>
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor={`company-${job.id}`}>Company</Label>
+                      <p>{job.company}</p>
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor={`startDate-${job.id}`}>Start Date</Label>
+                      <p>{job.startDate}</p>
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor={`endDate-${job.id}`}>End Date</Label>
+                      <p>{job.endDate}</p>
+                    </div>
+                  </>
+                )}
               </div>
               <div className="grid gap-2">
                 <Label htmlFor={`description-${job.id}`}>Description</Label>
@@ -254,22 +298,60 @@ export default function Profile() {
 
         {/* Education */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold">Education</h2>
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold">Education</h2>
+            {isEditing && <Button onClick={addEducation}>Add Education</Button>}
+          </div>
           {educations.map((edu) => (
-            <div key={edu.id} className="space-y-4 p-4 border rounded-md">
+            <div key={edu.id} className="space-y-4 p-4 border rounded-md relative">
+              {isEditing && (
+                <Button 
+                  variant="destructive" 
+                  size="sm" 
+                  className="absolute top-2 right-2"
+                  onClick={() => removeEducation(edu.id)}
+                >
+                  Remove
+                </Button>
+              )}
               <div className="grid gap-4 md:grid-cols-2">
-                <div className="grid gap-2">
-                  <Label htmlFor={`degree-${edu.id}`}>Degree</Label>
-                  <p>{edu.degree}</p>
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor={`institution-${edu.id}`}>Institution</Label>
-                  <p>{edu.institution}</p>
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor={`graduationYear-${edu.id}`}>Graduation Year</Label>
-                  <p>{edu.graduationYear}</p>
-                </div>
+                {isEditing ? (
+                  <>
+                    <input
+                      value={edu.degree}
+                      onChange={(e) => updateEducation(edu.id, 'degree', e.target.value)}
+                      className="border p-2 rounded"
+                      placeholder="Degree"
+                    />
+                    <input
+                      value={edu.institution}
+                      onChange={(e) => updateEducation(edu.id, 'institution', e.target.value)}
+                      className="border p-2 rounded"
+                      placeholder="Institution"
+                    />
+                    <input
+                      value={edu.graduationYear}
+                      onChange={(e) => updateEducation(edu.id, 'graduationYear', e.target.value)}
+                      className="border p-2 rounded"
+                      placeholder="Graduation Year"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div className="grid gap-2">
+                      <Label htmlFor={`degree-${edu.id}`}>Degree</Label>
+                      <p>{edu.degree}</p>
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor={`institution-${edu.id}`}>Institution</Label>
+                      <p>{edu.institution}</p>
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor={`graduationYear-${edu.id}`}>Graduation Year</Label>
+                      <p>{edu.graduationYear}</p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ))}
@@ -278,10 +360,29 @@ export default function Profile() {
         {/* Skills */}
         <section className="space-y-4">
           <h2 className="text-2xl font-bold">Skills</h2>
+          {isEditing && (
+            <div className="flex gap-2">
+              <input
+                value={newSkill}
+                onChange={(e) => setNewSkill(e.target.value)}
+                className="border p-2 rounded"
+                placeholder="New Skill"
+              />
+              <Button onClick={addSkill}>Add</Button>
+            </div>
+          )}
           <div className="flex flex-wrap gap-2">
             {skills.map((skill) => (
               <Badge key={skill} variant="secondary" className="text-sm">
                 {skill}
+                {isEditing && (
+                  <button 
+                    onClick={() => removeSkill(skill)}
+                    className="ml-2 text-red-500"
+                  >
+                    ×
+                  </button>
+                )}
               </Badge>
             ))}
           </div>

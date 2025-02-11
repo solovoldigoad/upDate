@@ -102,7 +102,7 @@ const HRCoursePage = () => {
       {/* Course Benefits */}
       <Card className="mb-12 border-red-100">
         <CardHeader>
-          <CardTitle>What You'll Learn</CardTitle>
+          <CardTitle>What You Learn</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-2 gap-4">

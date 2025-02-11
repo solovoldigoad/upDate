@@ -5,10 +5,10 @@ import { NextRequest } from "next/server";
 
 export async function PATCH(
     request: Request,
-    { params }: { params: { id: string } }
+    context : { params: { id: string } }      
 ) {
     try {
-        const { id } = params;
+        const { id } = context.params;
         const { status } = await request.json();
 
         await connectDB();

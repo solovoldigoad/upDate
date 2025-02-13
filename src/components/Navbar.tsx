@@ -84,6 +84,41 @@ const Navbar = () => {
 
               </Dialog>
             </div>
+            <div className="flex items-center md:hidden">
+            {status === 'authenticated' ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage 
+                      src={session?.user?.image || undefined} 
+                      alt={session?.user?.name || "User avatar"}
+                    />
+                    <AvatarFallback>
+                      {session?.user?.name?.[0]?.toUpperCase() || 'U'}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link href="/profile">Profile</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/settings">Settings</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onSelect={() => signOut()}>
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button variant="ghost" className='bg-gradient-to-r from-red-600 to-red-700 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300' onClick={()=> {router.push("/SignUp/phoneNumber")}}>Sign In</Button>
+          )}
+            </div>
 
             {/* Desktop navigation */}
             <div className="hidden md:flex items-center space-x-6">
@@ -147,11 +182,6 @@ const Navbar = () => {
               <Link href="/job" className="flex items-center space-x-1 text-gray-700 hover:text-red-600 group">
                 <Briefcase className="h-5 w-5 group-hover:scale-110 transition-transform" />
                 <span>Jobs</span>
-              </Link>
-
-              <Link href="/messages" className="flex items-center space-x-1 text-gray-700 hover:text-red-600 group">
-                <MessageSquare className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                <span>Messages</span>
               </Link>
             </div>
 
@@ -233,14 +263,9 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <Link href="/jobs" className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
+              <Link href="/job" className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
                 <Briefcase className="h-5 w-5" />
                 <span>Jobs</span>
-              </Link>
-
-              <Link href="/messages" className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
-                <MessageSquare className="h-5 w-5" />
-                <span>Messages</span>
               </Link>
               <button className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg w-full">
                 <Bell className="h-5 w-5" />

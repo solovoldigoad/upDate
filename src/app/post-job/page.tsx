@@ -9,13 +9,13 @@ export default function JobPostingForm() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
-    title: "Senior React Developer",
-    company: "Tech Solutions Inc",
-    location: "New York, NY",
-    salary: "$120k - $150k",
-    postedDate: "2024-02-01",
-    description: "Looking for an experienced React developer...",
-    requirements: ["5+ years React", "TypeScript", "Node.js"],
+    title: "",
+    company: "",
+    location: "",
+    salary: "",
+    postedDate: "",
+    description: "",
+    requirements: [""],
     applicants: 24
   });
 

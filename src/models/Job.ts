@@ -29,7 +29,7 @@ const JobSchema = new Schema({
     },
     postedDate: {
         type: String,
-        default: () => new Date().toISOString().split('T')[0],
+        default: () => new Date().toISOString(),
         required: true
     },
     status: {

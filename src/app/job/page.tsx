@@ -153,7 +153,7 @@ const JobListings = () => {
                   </div>
 
                   <button 
-                    onClick={() => router.push(`/job/${job._id}`)}
+                    onClick={() => router.push(`/job/${job._id}`)}    
                     className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors"
                   >
                     Apply Now

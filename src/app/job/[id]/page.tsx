@@ -37,7 +37,7 @@ interface Job {
 
 export default function JobDetails() {
   const { data: session } = useSession();
-  const params = useParams();
+  const { id } = useParams();
   const router = useRouter();
   const [job, setJob] = useState<Job | null>(null);
   const [loading, setLoading] = useState(true);
@@ -46,9 +46,11 @@ export default function JobDetails() {
   });
 
   useEffect(() => {
+    if (!id) return;
+  
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`/api/jobs/${params.id}`);
+        const response = await axios.get(`/api/jobs/${id}`);
         setJob(response.data);
         setLoading(false);
       } catch (error) {
@@ -56,9 +58,9 @@ export default function JobDetails() {
         setLoading(false);
       }
     };
-
+  
     fetchJob();
-  }, [params.id]);
+  }, [id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

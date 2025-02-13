@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useMemo, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
@@ -8,20 +8,25 @@ import { Button } from '@/components/ui/button'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { User, Building } from 'lucide-react'
 import axios from 'axios'
-// import { useSession } from 'next-auth/react'
 
 
 
-export default function MobileNumberEntry() {
+
+function EnterNumber() {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [userType, setUserType] = useState('jobseeker')
   const [error, setError] = useState('')
   const route = useRouter()
   const searchParams = useSearchParams()
-  const email = searchParams.get('email')
-  const name = searchParams.get('name')
-  const image = searchParams.get('image')
+  // const email = searchParams.get('email')
+  // const name = searchParams.get('name')
+  // const image = searchParams.get('image')
 //   const {data: session , update} = useSession()
+const params = useMemo(() => ({
+  email: searchParams.get("email"),
+  name: searchParams.get("name"),
+  image: searchParams.get("image")
+}), [searchParams]);
 
   const handleMobileNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, '')
@@ -35,17 +40,10 @@ async function handleSubmit() {
         const response = await axios.post("/api/SignUp/phoneNumber", {
           phoneNumber,
           userType, // Include userType in the request
-          email,
-          name,
-          image
+          email: params.email,
+          name: params.name,
+          image: params.image
         })
-        // update({
-        //   ...session,
-        //   user: {
-        //     ...session?.user,
-        //     phoneNumber,
-        //   }
-        // });
         if(response.status === 200 || response.status === 400){
           route.push("/SignUp/email")
         }
@@ -147,3 +145,11 @@ async function handleSubmit() {
     </div>
   )
 }
+
+    export default function MobileNumber(){
+      return(
+        <Suspense fallback={<div>Loading...</div>}>
+          <EnterNumber />
+        </Suspense>
+      )
+    }

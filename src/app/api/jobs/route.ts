@@ -45,19 +45,12 @@ export async function POST(req: NextRequest) {
 export async function GET() {
     try {
         await connectDB();
-        const session = await getServerSession(options);
-        
-        if (!session?.user?.email) {
-            return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-        }
-
         const jobs = await Job.find({})
             .populate('postedBy', 'email')
             .sort({ postedDate: -1 });
 
         const jobsWithSessionEmail = {
-            jobs,
-            sessionUserEmail: session.user.email
+            jobs
         };
 
         return NextResponse.json(jobsWithSessionEmail);

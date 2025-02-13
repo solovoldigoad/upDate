@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Bell, Search, Briefcase, MessageSquare,  DollarSign,  } from 'lucide-react';
+import { Menu, X, Bell, Search, Briefcase, DollarSign,  } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useSession, signOut} from 'next-auth/react'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';

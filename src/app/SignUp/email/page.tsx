@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Card, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Mail, Lock, User, EyeIcon, EyeOff,Facebook } from 'lucide-react';
+import { Mail, Lock, User, EyeIcon, EyeOff } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { signIn  } from 'next-auth/react';
 import axios from 'axios';
@@ -206,7 +206,7 @@ const AuthPages = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="px-32">
                 <Button 
                   variant="outline" 
                   onClick={() =>signIn('google')}
@@ -215,13 +215,6 @@ const AuthPages = () => {
                   <Mail className="w-5 h-5 mr-2 text-black group-hover:text-white transition-colors" />
 
                   Google
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="w-full text-black hover:bg-red-500 hover:text-white transition-colors group"
-                >
-                  <Facebook className="w-5 h-5 mr-2 text-black group-hover:text-white transition-colors" />
-                  Facebook
                 </Button>
               </div>
               <button

@@ -93,7 +93,9 @@ const UpDate = () => {
                 placeholder="What do you want to learn?"
                 className="flex-1 px-4 py-2 outline-none text-gray-800"
               />
-              <button className="bg-red-700 text-white px-6 py-2 rounded-lg hover:bg-red-800">
+              <button 
+              onClick={() => router.push('/job')}
+              className="bg-red-700 text-white px-6 py-2 rounded-lg hover:bg-red-800">
                 Search
               </button>
             </div>

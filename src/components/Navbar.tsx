@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Bell, Search, Briefcase, DollarSign,  } from 'lucide-react';
+import { Menu, X, Bell, Briefcase, DollarSign,  } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useSession, signOut} from 'next-auth/react'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -188,7 +188,9 @@ const Navbar = () => {
             {/* Action buttons */}
             <div className="flex items-center space-x-4">
               <div className="relative">
-                <button className="p-2 hover:bg-gray-100 rounded-full relative">
+                <button
+                 onClick={() => router.push('/notifaction')} 
+                className="p-2 hover:bg-gray-100 rounded-full relative">
                   <Bell className="h-6 w-6 text-gray-700" />
                   {notifications.some(n => n.isNew) && (
                     <span className="absolute top-1 right-1 h-3 w-3 bg-red-500 rounded-full"></span>
@@ -252,7 +254,7 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden border-t border-gray-200">
             <div className="px-4 py-4 space-y-4">
-              <div className="relative">
+              {/* <div className="relative">
                 <div className="flex items-center bg-gray-50 rounded-full px-4 py-2 space-x-2 border">
                   <Search className="h-5 w-5 text-gray-400" />
                   <input
@@ -261,13 +263,15 @@ const Navbar = () => {
                     className="w-full bg-transparent focus:outline-none"
                   />
                 </div>
-              </div>
+              </div> */}
 
               <Link href="/job" className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg">
                 <Briefcase className="h-5 w-5" />
                 <span>Jobs</span>
               </Link>
-              <button className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg w-full">
+              <button 
+              onClick={() => router.push('/notifaction')}
+              className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg w-full">
                 <Bell className="h-5 w-5" />
                 <span>Notifications</span>
                 {notifications.some(n => n.isNew) && (
